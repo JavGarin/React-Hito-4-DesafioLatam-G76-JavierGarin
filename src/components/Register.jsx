@@ -17,7 +17,7 @@ const handleSubmit = (e) => {
     setError('Todos los campos son obligatorios.');
     return;
     }
-    // mínimo 6 caracteres para la contraseña
+    
     if (password.length < 6) {
     setError('La contraseña debe tener al menos 6 caracteres.');
     return;
@@ -28,7 +28,6 @@ const handleSubmit = (e) => {
     return;
     }
 
-    // si está correcto
     setSuccess('¡Registro exitoso!');
 };
 

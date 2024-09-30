@@ -16,13 +16,12 @@ const handleSubmit = (e) => {
     setError('Todos los campos son obligatorios.');
     return;
     }
-    // el password debe tener mínimo 6 caracteres
+    
     if (password.length < 6) {
     setError('La contraseña debe tener al menos 6 caracteres.');
     return;
     }
 
-    // si los datos son correctos
     setSuccess('¡Inicio de sesión exitoso!');
 };
 
