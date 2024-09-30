@@ -12,12 +12,12 @@ const handleSubmit = (e) => {
     setError('');
     setSuccess('');
 
-    // Validaciones
+    // validaciones
     if (!email || !password || !confirmPassword) {
     setError('Todos los campos son obligatorios.');
     return;
     }
-
+    // mínimo 6 caracteres para la contraseña
     if (password.length < 6) {
     setError('La contraseña debe tener al menos 6 caracteres.');
     return;
@@ -28,7 +28,7 @@ const handleSubmit = (e) => {
     return;
     }
 
-    // Si todo está correcto
+    // si está correcto
     setSuccess('¡Registro exitoso!');
 };
 
