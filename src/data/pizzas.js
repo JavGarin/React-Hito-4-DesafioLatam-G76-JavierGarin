@@ -1,64 +1,23 @@
-// Array de pizzas inventada
-
 export const pizzas = [
-    {
-    id: 1,
-    name: "Margarita",
-    ingredients: ["Tomate", "Mozzarella", "Albahaca"],
-    price: 8.990,
-    image: "https://example.com/margarita.jpg"
-    },
-    {
-    id: 2,
-    name: "Pepperoni",
-    ingredients: ["Pepperoni", "Mozzarella", "Tomate"],
-    price: 9.990,
-    image: "https://example.com/pepperoni.jpg"
-    },
-    {
-    id: 3,
-    name: "Cuatro Quesos",
-    ingredients: ["Mozzarella", "Parmesano", "Gorgonzola", "Ricotta"],
-    price: 10.990,
-    image: "https://example.com/cuatro-quesos.jpg"
-    },
-    {
-    id: 4,
-    name: "Hawaiana",
-    ingredients: ["Piña", "Jamón", "Mozzarella", "Tomate"],
-    price: 9.490,
-    image: "https://example.com/hawaiana.jpg"
-    },
-    {
-    id: 5,
-    name: "Vegana",
-    ingredients: ["Tomate", "Espinacas", "Aceitunas", "Pimientos"],
-    price: 11.990,
-    image: "https://example.com/vegana.jpg"
-    },
-    {
-    id: 6,
-    name: "Mexicana",
-    ingredients: ["Chorizo", "Jalapeños", "Mozzarella", "Tomate"],
-    price: 10.990,
-    image: "https://example.com/mexicana.jpg"
-    }
-];
-
-  // este array para simular el carrito de compras
-export const pizzaCart = [
-    {
-    id: 1,
-    name: "Margarita",
-    price: 8.990,
-    quantity: 2,
-    image: "https://example.com/margarita.jpg"
-    },
-    {
-    id: 2,
-    name: "Pepperoni",
-    price: 9.990,
-    quantity: 1,
-    image: "https://example.com/pepperoni.jpg"
-    }
+  {
+      id: 1,
+      name: "Pizza Margherita",
+      price: 8000,
+      image: "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_cl.jpg?alt=media&token=6a9a33da-5c00-49d4-9080-784dcc87ec2c", // Imagen de la pizza
+      description: "Tomate, mozzarella, albahaca."
+  },
+  {
+      id: 2,
+      name: "Pizza Pepperoni",
+      price: 9000,
+      image: "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fcheese-164872_640_com.jpg?alt=media&token=18b2b821-4d0d-43f2-a1c6-8c57bc388fab", // Imagen de la pizza
+      description: "Tomate, mozzarella, pepperoni."
+  },
+  {
+      id: 3,
+      name: "Pizza Vegetariana",
+      price: 8500,
+      image: "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3", // Imagen de la pizza
+      description: "Tomate, mozzarella, vegetales."
+  }
 ];
