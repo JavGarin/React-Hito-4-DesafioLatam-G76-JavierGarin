@@ -1,15 +1,6 @@
-import React, { useState } from 'react';
-import { pizzas } from '../data/pizzas'; // Reutilizando el archivo de datos
+import React from 'react';
 
-const Cart = () => {
-    // Simular estado del carrito
-    const [cart, setCart] = useState(
-        pizzas.map(pizza => ({
-            ...pizza,
-            quantity: 1 // Añadiendo cantidad inicial
-        }))
-    );
-
+const Cart = ({ cart, setCart }) => {
     // Función para aumentar la cantidad de pizzas
     const handleIncrease = (id) => {
         setCart(cart.map(pizza =>
@@ -21,7 +12,12 @@ const Cart = () => {
     const handleDecrease = (id) => {
         setCart(cart.map(pizza =>
             pizza.id === id && pizza.quantity > 1 ? { ...pizza, quantity: pizza.quantity - 1 } : pizza
-        ).filter(pizza => pizza.quantity > 0));
+        ));
+    };
+
+    // Función para eliminar completamente una pizza del carrito
+    const handleRemove = (id) => {
+        setCart(cart.filter(pizza => pizza.id !== id)); // Filtra las pizzas y quita la que tenga el ID correspondiente
     };
 
     // Calcular el total del carrito
@@ -34,7 +30,6 @@ const Cart = () => {
                 {cart.map((pizza) => (
                     <div key={pizza.id} className="col-md-6 col-lg-4">
                         <div className="card mb-4">
-                            {/* Reutilizando la imagen de pizzas.js */}
                             <img src={pizza.image} alt={pizza.name} className="card-img-top img-fluid" />
                             <div className="card-body">
                                 <h5 className="card-title">{pizza.name}</h5>
@@ -54,6 +49,13 @@ const Cart = () => {
                                         +
                                     </button>
                                 </div>
+                                {/* Botón para eliminar la pizza del carrito */}
+                                <button 
+                                    className="btn btn-danger mt-3" 
+                                    onClick={() => handleRemove(pizza.id)}
+                                >
+                                    Eliminar
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -66,3 +68,4 @@ const Cart = () => {
 };
 
 export default Cart;
+
