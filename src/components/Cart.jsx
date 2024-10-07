@@ -17,7 +17,7 @@ const Cart = ({ cart, setCart }) => {
 
     // función para eliminar una pizza del carrito
     const handleRemove = (id) => {
-        setCart(cart.filter(pizza => pizza.id !== id)); // filtra las pizzas y quita la que tenga el ID correspondiente
+        setCart(cart.filter(pizza => pizza.id !== id)); // filtra las pizzas y se quita la que tenga el ID correspondiente
     };
 
     // el total del carrito
@@ -49,7 +49,7 @@ const Cart = ({ cart, setCart }) => {
                                         +
                                     </button>
                                 </div>
-                                {/* Botón para eliminar la pizza del carrito */}
+                                {/* botón para eliminar la pizza del carrito */}
                                 <button 
                                     className="btn btn-danger mt-3" 
                                     onClick={() => handleRemove(pizza.id)}
