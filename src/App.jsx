@@ -9,20 +9,20 @@ import Home from './components/Home';
 const App = () => {
     const [cart, setCart] = useState([]);
 
-    // Función para agregar pizzas al carrito
+    // función para agregar las pizzas al carrito
     const addToCart = (pizza) => {
-        // Verificar si la pizza ya está en el carrito
+        // se verifica si la pizza ya está en el carrito
         const existingPizza = cart.find(item => item.id === pizza.id);
 
         if (existingPizza) {
-            // Si ya está, solo incrementa la cantidad
+            // si ya está, solo se incrementa la cantidad
             setCart(cart.map(item =>
                 item.id === pizza.id
                     ? { ...item, quantity: item.quantity + 1 }
                     : item
             ));
         } else {
-            // Si no está, la añade al carrito con cantidad inicial 1
+            // si no está, la añade al carrito con cantidad inicial 1
             setCart([...cart, { ...pizza, quantity: 1 }]);
         }
     };

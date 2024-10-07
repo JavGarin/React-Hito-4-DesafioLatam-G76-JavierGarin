@@ -14,9 +14,9 @@ const Home = ({ addToCart }) => {
                             <CardPizza
                                 name={pizza.name}
                                 price={pizza.price}
-                                ingredients={pizza.description.split(", ")} // Dividir los ingredientes en un array
+                                ingredients={pizza.description.split(", ")} // dividir los ingredientes en un array
                                 img={pizza.image}
-                                onAddToCart={() => addToCart(pizza)} // Pasamos la pizza seleccionada al carrito
+                                onAddToCart={() => addToCart(pizza)} // se pasa la pizza seleccionada al carrito
                             />
                         </div>
                     ))}

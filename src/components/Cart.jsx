@@ -1,26 +1,26 @@
 import React from 'react';
 
 const Cart = ({ cart, setCart }) => {
-    // Función para aumentar la cantidad de pizzas
+    // función para aumentar la cantidad de pizzas
     const handleIncrease = (id) => {
         setCart(cart.map(pizza =>
             pizza.id === id ? { ...pizza, quantity: pizza.quantity + 1 } : pizza
         ));
     };
 
-    // Función para disminuir la cantidad de pizzas
+    // para disminuir la cantidad de pizzas
     const handleDecrease = (id) => {
         setCart(cart.map(pizza =>
             pizza.id === id && pizza.quantity > 1 ? { ...pizza, quantity: pizza.quantity - 1 } : pizza
         ));
     };
 
-    // Función para eliminar completamente una pizza del carrito
+    // función para eliminar una pizza del carrito
     const handleRemove = (id) => {
-        setCart(cart.filter(pizza => pizza.id !== id)); // Filtra las pizzas y quita la que tenga el ID correspondiente
+        setCart(cart.filter(pizza => pizza.id !== id)); // filtra las pizzas y quita la que tenga el ID correspondiente
     };
 
-    // Calcular el total del carrito
+    // el total del carrito
     const total = cart.reduce((sum, pizza) => sum + pizza.price * pizza.quantity, 0);
 
     return (
