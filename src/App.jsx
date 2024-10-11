@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Cart from './components/Cart';
+// import Cart from './components/Cart'; //
 import Home from './components/Home';
 // import Register from './components/Register'; //
 // import Login from './components/Login'; //
@@ -34,8 +34,7 @@ const App = () => {
             {/* 
             <Register />
             <Login /> 
-            */}
-            <Cart cart={cart} setCart={setCart} />
+            <Cart cart={cart} setCart={setCart} />*/}
             <Footer />
         </div>
     );
