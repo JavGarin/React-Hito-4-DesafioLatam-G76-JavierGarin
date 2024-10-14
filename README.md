@@ -1,7 +1,8 @@
 HEAD
 
-[!NOTED]
-El proyecto de React Hitos, pesa sobre los 100mb de modo comprimido, no me permite subirlo a la plataforma por tanto debo subir el repositorio remoto desde ahora.
+<span style="color:red;">NOTED: El proyecto de React Hitos, pesa sobre los 100mb de modo comprimido, no me permite subirlo a la plataforma por tanto debo subir el repositorio remoto desde ahora.</span>
+
+
 
 # Getting Started with Create React App
 
