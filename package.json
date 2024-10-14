@@ -36,6 +36,8 @@
     ]
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.10"
+    "@types/bootstrap": "^5.2.10",
+    "webpack": "^5.95.0",
+    "webpack-dev-server": "^5.1.0"
   }
 }

@@ -1,9 +1,25 @@
-import React from 'react';
-import { pizzas } from '../data/pizzas'; // Importamos el array de pizzas
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import CardPizza from './CardPizza';
 
 const Home = ({ addToCart }) => {
+    const [pizzas, setPizzas] = useState([]); // estado para almacenar las pizzas
+
+    // useEffect para consumir la API
+    useEffect(() => {
+        const fetchPizzas = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/pizzas');
+                const data = await response.json();
+                setPizzas(data);
+            } catch (error) {
+                console.error('Error fetching pizzas:', error);
+            }
+        };
+
+        fetchPizzas();
+    }, []);
+
     return (
         <div>
             <Header />
@@ -14,9 +30,9 @@ const Home = ({ addToCart }) => {
                             <CardPizza
                                 name={pizza.name}
                                 price={pizza.price}
-                                ingredients={pizza.description.split(", ")} // dividir los ingredientes en un array
-                                img={pizza.image}
-                                onAddToCart={() => addToCart(pizza)} // se pasa la pizza seleccionada al carrito
+                                ingredients={pizza.ingredients}
+                                img={pizza.img}
+                                onAddToCart={() => addToCart(pizza)}
                             />
                         </div>
                     ))}
