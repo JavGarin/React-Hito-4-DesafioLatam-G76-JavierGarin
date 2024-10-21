@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Header from './Header';
-import CardPizza from './CardPizza';
+import Header from '../components/Header';
+import CardPizza from '../components/CardPizza';
 
 const Home = ({ addToCart }) => {
-    const [pizzas, setPizzas] = useState([]); // estado para almacenar las pizzas
+    const [pizzas, setPizzas] = useState([]);
 
-    // useEffect para consumir la API
     useEffect(() => {
         const fetchPizzas = async () => {
             try {
@@ -19,6 +18,8 @@ const Home = ({ addToCart }) => {
 
         fetchPizzas();
     }, []);
+
+    if (!pizzas.length) return <div>Cargando...</div>;
 
     return (
         <div>

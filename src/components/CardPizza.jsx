@@ -13,12 +13,10 @@ const CardPizza = ({ name, price, ingredients, img, onAddToCart }) => {
                 </ul>
                 <p className="card-text">Precio: ${price.toLocaleString()}</p>
                 <button className="btn btn-outline-dark me-4" style={{ borderWidth: '2px' }}>Ver más</button>
-                {/* botón para añadir al carrito */}
-                <button className="btn btn-dark" onClick={onAddToCart}>Añadir</button> 
+                <button className="btn btn-dark" onClick={onAddToCart}>Añadir</button>
             </div>
         </div>
     );
 };
 
 export default CardPizza;
-

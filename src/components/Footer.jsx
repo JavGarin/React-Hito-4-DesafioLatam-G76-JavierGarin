@@ -1,13 +1,26 @@
-import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
     return (
-    <footer className="text-center mt-4 py-3 bg-dark text-bg-dark p-3">
-        <p>© 2021 - Pizzería Mamma Mía! - Todos los derechos reservados</p>
-    </footer>
-  );
+        <footer className="mt-auto bg-dark text-white py-3 text-center">
+            <div className="container">
+                <p>© 2024 Javier Garin, DesafioLatam G76. Todos los derechos reservados.</p>
+                <p>
+                    Sígueme en 
+                    <a 
+                        href="https://github.com/JavGarin" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-white ms-2"
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <FontAwesomeIcon icon={faGithub} /> GitHub
+                    </a>
+                </p>
+            </div>
+        </footer>
+    );
 };
 
 export default Footer;
-
-

@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-const Pizza = () => {
-    const [pizza, setPizza] = useState(null); // estado para almacenar la pizza
+const Pizza = ({ addToCart }) => {
+    const { pizzaId } = useParams(); // el ID de la pizza de los parámetros de la URL
+    const [pizza, setPizza] = useState(null);
 
     useEffect(() => {
 
-        fetch('http://localhost:5000/api/pizzas/p001')
-            .then(response => response.json())
-            .then(data => setPizza(data))
-            .catch(error => console.error('Error fetching pizza:', error));
-    }, []); // con array vacío aseguro que la petición se haga una sola vez al montar el componente
+        const fetchPizza = async () => {
+            try {
+                const response = await fetch(`http://localhost:5000/api/pizzas/${pizzaId}`);
+                const data = await response.json();
+                setPizza(data);
+            } catch (error) {
+                console.error('Error fetching pizza:', error);
+            }
+        };
+
+        fetchPizza();
+    }, [pizzaId]);
 
     if (!pizza) {
         return <div>Cargando pizza...</div>;
@@ -25,11 +34,16 @@ const Pizza = () => {
                     <h6>Ingredientes:</h6>
                     <ul>
                         {pizza.ingredients.map((ingredient, index) => (
-                            <li key={index}>{ingredient}</li> // mostrar cada ingrediente
+                            <li key={index}>{ingredient}</li>
                         ))}
                     </ul>
-                    <h6 className="mt-3">Precio: ${pizza.price}</h6>
-                    <button className="btn btn-primary w-100 mt-3">Añadir al carrito</button>
+                    <h6 className="mt-3">Precio: ${pizza.price.toLocaleString()}</h6>
+                    <button 
+                        className="btn btn-primary w-100 mt-3"
+                        onClick={() => addToCart(pizza)} // Añado la pizza al carrito
+                    >
+                        Añadir al carrito
+                    </button>
                 </div>
             </div>
         </div>
@@ -37,4 +51,3 @@ const Pizza = () => {
 };
 
 export default Pizza;
-
