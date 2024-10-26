@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-const Navbar = ({ total }) => {
+const Navbar = () => {
+  const { totalPrice } = useCart();
   const token = false;
 
   return (
@@ -29,7 +30,7 @@ const Navbar = ({ total }) => {
         </div>
         <div className="ms-auto mt-2 mt-lg-0">
           <Link to="/cart" className="btn btn-dark border border-warning me-3">
-            🛒 Total: ${total.toLocaleString()}
+            🛒 Total: ${totalPrice.toLocaleString()}
           </Link>
         </div>
       </div>
@@ -38,5 +39,3 @@ const Navbar = ({ total }) => {
 };
 
 export default Navbar;
-
-
