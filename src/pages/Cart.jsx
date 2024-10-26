@@ -1,26 +1,11 @@
 import React from 'react';
+import { useCart } from '../context/CartContext';
 
-const Cart = ({ cart, setCart }) => {
-    const handleIncrease = (id) => {
-        setCart(cart.map(pizza => 
-            pizza.id === id ? { ...pizza, quantity: pizza.quantity + 1 } : pizza
-        ));
-    };
-
-    const handleDecrease = (id) => {
-        setCart(cart.map(pizza => 
-            pizza.id === id && pizza.quantity > 1 ? { ...pizza, quantity: pizza.quantity - 1 } : pizza
-        ));
-    };
-
-    const handleRemove = (id) => {
-        setCart(cart.filter(pizza => pizza.id !== id));
-    };
-
-    const total = cart.reduce((sum, pizza) => sum + pizza.price * pizza.quantity, 0);
+const Cart = () => {
+    const { cart, increaseQuantity, decreaseQuantity, removeFromCart, totalPrice } = useCart();
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 mb-5">
             <h2 className="mb-4">Carrito de Compras</h2>
             <div className="row">
                 {cart.map((pizza) => (
@@ -34,20 +19,20 @@ const Cart = ({ cart, setCart }) => {
                                 <div className="d-flex">
                                     <button 
                                         className="btn btn-outline-dark me-2" 
-                                        onClick={() => handleDecrease(pizza.id)}
+                                        onClick={() => decreaseQuantity(pizza.id)}
                                     >
                                         -
                                     </button>
                                     <button 
                                         className="btn btn-outline-dark me-2" 
-                                        onClick={() => handleIncrease(pizza.id)}
+                                        onClick={() => increaseQuantity(pizza.id)}
                                     >
                                         +
                                     </button>
                                 </div>
                                 <button 
                                     className="btn btn-danger mt-3" 
-                                    onClick={() => handleRemove(pizza.id)}
+                                    onClick={() => removeFromCart(pizza.id)}
                                 >
                                     Eliminar
                                 </button>
@@ -56,12 +41,12 @@ const Cart = ({ cart, setCart }) => {
                     </div>
                 ))}
             </div>
-            <h3>Total: ${total.toLocaleString()}</h3>
-            <button className="btn btn-success">Pagar</button>
+            <div className="d-flex justify-content-between align-items-center mt-4">
+                <h3>Total: ${totalPrice.toLocaleString()}</h3>
+                <button className="btn btn-success btn-lg">Pagar</button>
+            </div>
         </div>
     );
 };
 
 export default Cart;
-
-

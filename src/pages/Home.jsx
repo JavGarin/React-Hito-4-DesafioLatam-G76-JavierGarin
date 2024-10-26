@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import CardPizza from '../components/CardPizza';
+import { useCart } from '../context/CartContext';
 
-const Home = ({ addToCart }) => {
+const Home = () => {
+    const { addToCart } = useCart();
     const [pizzas, setPizzas] = useState([]);
 
     useEffect(() => {
