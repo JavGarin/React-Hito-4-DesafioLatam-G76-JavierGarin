@@ -28,7 +28,6 @@ const App = () => {
         });
     };
 
-    // uso el metodo .reduce para tomar como argumento la function y sacar los precios de las pizzas seleccionada.
     const totalPrice = cart.reduce((total, pizza) => total + pizza.price * pizza.quantity, 0);
 
     return (
