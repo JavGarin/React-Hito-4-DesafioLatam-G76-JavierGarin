@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 
 const CartContext = createContext();
 
-export const useCart = () => useContext(CartContext); // uso de useContext
+export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
@@ -42,10 +42,17 @@ export const CartProvider = ({ children }) => {
         );
     };
 
-    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0); // uso del .reduce para los valores del array
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, totalPrice }}>
+        <CartContext.Provider value={{
+            cart,
+            addToCart,
+            removeFromCart,
+            increaseQuantity,
+            decreaseQuantity,
+            totalPrice
+        }}>
             {children}
         </CartContext.Provider>
     );
