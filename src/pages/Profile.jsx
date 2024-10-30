@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Profile = () => {
-    const email = "usuario@example.com";
+    const email = "javiergarin@example.com";
 
     const handleLogout = () => {
 
