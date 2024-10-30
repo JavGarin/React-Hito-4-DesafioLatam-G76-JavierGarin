@@ -15,7 +15,7 @@ const Footer = () => {
                         className="text-white ms-2"
                         style={{ textDecoration: 'none' }}
                     >
-                        <FontAwesomeIcon icon={faGithub} /> GitHub
+                        <FontAwesomeIcon icon={faGithub} /> GitHub 🍕
                     </a>
                 </p>
             </div>
