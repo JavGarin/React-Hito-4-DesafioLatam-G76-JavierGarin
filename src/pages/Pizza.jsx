@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'; // useParams requerido
 
 const Pizza = ({ addToCart }) => {
-    const { pizzaId } = useParams(); // el ID de la pizza de los parámetros de la URL
+    const { pizzaId } = useParams(); // el ID de la pizza de los parámetros de la URL, useParams 
     const [pizza, setPizza] = useState(null);
+    const [error, setError] = useState(null); // agrego estado para manejar los errores
 
     useEffect(() => {
-
         const fetchPizza = async () => {
             try {
                 const response = await fetch(`http://localhost:5000/api/pizzas/${pizzaId}`);
+
+                // manejo del estado de la respuesta, ocupo el try catch por una buena práctica 
+                if (!response.ok) {
+                    throw new Error('Pizza no encontrada');
+                }
+
                 const data = await response.json();
                 setPizza(data);
             } catch (error) {
+                setError(error.message);
                 console.error('Error fetching pizza:', error);
             }
         };
@@ -20,8 +27,12 @@ const Pizza = ({ addToCart }) => {
         fetchPizza();
     }, [pizzaId]);
 
+    if (error) {
+        return <div className="alert alert-danger">Error: {error}</div>; // para el mensaje de error
+    }
+
     if (!pizza) {
-        return <div>Cargando pizza...</div>;
+        return <div>Cargando pizza...</div>; // mensaje de carga
     }
 
     return (
@@ -40,7 +51,7 @@ const Pizza = ({ addToCart }) => {
                     <h6 className="mt-3">Precio: ${pizza.price.toLocaleString()}</h6>
                     <button 
                         className="btn btn-primary w-100 mt-3"
-                        onClick={() => addToCart(pizza)} // Añado la pizza al carrito
+                        onClick={() => addToCart(pizza)} // añado la pizza al carrito
                     >
                         Añadir al carrito
                     </button>
