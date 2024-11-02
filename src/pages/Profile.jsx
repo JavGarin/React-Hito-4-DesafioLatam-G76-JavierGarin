@@ -11,8 +11,10 @@ const Profile = () => {
     return (
         <div className="container mt-5">
             <h2>Perfil 🍕</h2>
-            <p>Email: {email}</p>
-            <p>nivel: ⭐⭐⭐⭐⭐</p>
+            <p><strong>Email:</strong> {email}</p>
+            <p><strong>Nivel:</strong> ⭐⭐⭐⭐⭐</p>
+            <p><strong>Puntos acumulados:</strong> 1934/2000⚡</p>
+            <p><strong>Descuento:</strong> 15% 😉</p>
             <button className="btn btn-danger" onClick={handleLogout}>Cerrar sesión</button>
         </div>
     );
