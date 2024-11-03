@@ -1,8 +1,10 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
+import { useUser } from '../context/UserContext';
 
 const Cart = () => {
     const { cart, increaseQuantity, decreaseQuantity, removeFromCart, totalPrice } = useCart();
+    const { token } = useUser();
 
     return (
         <div className="container mt-5 mb-5">
@@ -43,7 +45,7 @@ const Cart = () => {
             </div>
             <div className="d-flex justify-content-between align-items-center mt-4">
                 <h3>Total: ${totalPrice.toLocaleString()}</h3>
-                <button className="btn btn-success btn-lg">Pagar</button>
+                <button className="btn btn-success btn-lg" disabled={!token}>Pagar</button>
             </div>
         </div>
     );
