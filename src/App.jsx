@@ -40,9 +40,10 @@ const App = () => {
                     <Route path="/" element={<Home addToCart={addToCart} />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
-                    <Route path="/pizza/:pizzaId" element={<Pizza addToCart={addToCart} />} />
+                    {/* ruta protegida para el perfil */}
                     <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />} />
+                    <Route path="/cart" element={token ? <Cart cart={cart} setCart={setCart} /> : <Navigate to="/login" />} />
+                    <Route path="/pizza/:pizzaId" element={<Pizza addToCart={addToCart} />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
