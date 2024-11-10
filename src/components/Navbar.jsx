@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { useUser } from '../context/UserContext'; // importando hook del UserContext
+import { useUser } from '../context/UserContext';
 
 const Navbar = () => {
     const { totalPrice } = useCart();
@@ -16,7 +16,7 @@ const Navbar = () => {
             <div className="collapse navbar-collapse" id="navbarContent">
                 <div className="d-flex flex-column flex-lg-row">
                     <Link to="/" className="btn btn-dark me-2 border border-warning">🍕 Home</Link>
-                    {token ? ( // aplicando token
+                    {token ? (
                         <>
                             <Link to="/profile" className="btn btn-dark me-2 border border-warning">🔓 Profile</Link>
                             <button className="btn btn-dark me-2 border border-warning" onClick={logout}>🔒 Logout</button>
