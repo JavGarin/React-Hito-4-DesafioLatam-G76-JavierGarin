@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { useUser } from '../context/UserContext';
 
 const Cart = () => {
     const { cart, increaseQuantity, decreaseQuantity, removeFromCart, totalPrice } = useCart();
     const { token } = useUser();
+    const [purchaseSuccess, setPurchaseSuccess] = useState(false);
+
+    const handleCheckout = async () => {
+        if (token) {
+            try {
+                const response = await fetch('/api/checkouts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ cart })
+                });
+                
+                if (response.ok) {
+                    setPurchaseSuccess(true);
+                } else {
+                    throw new Error('No se pudo completar la compra. Inténtalo de nuevo.');
+                }
+            } catch (error) {
+                console.error(error.message);
+                setPurchaseSuccess(false);
+            }
+        } else {
+            alert("Debes estar logeado para realizar la compra.");
+        }
+    };
 
     return (
         <div className="container mt-5 mb-5">
@@ -19,34 +46,20 @@ const Cart = () => {
                                 <p className="card-text">Precio: ${pizza.price.toLocaleString()}</p>
                                 <p className="card-text">Cantidad: {pizza.quantity}</p>
                                 <div className="d-flex">
-                                    <button 
-                                        className="btn btn-outline-dark me-2" 
-                                        onClick={() => decreaseQuantity(pizza.id)}
-                                    >
-                                        -
-                                    </button>
-                                    <button 
-                                        className="btn btn-outline-dark me-2" 
-                                        onClick={() => increaseQuantity(pizza.id)}
-                                    >
-                                        +
-                                    </button>
+                                    <button className="btn btn-outline-dark me-2" onClick={() => decreaseQuantity(pizza.id)}> - </button>
+                                    <button className="btn btn-outline-dark me-2" onClick={() => increaseQuantity(pizza.id)}> + </button>
                                 </div>
-                                <button 
-                                    className="btn btn-danger mt-3" 
-                                    onClick={() => removeFromCart(pizza.id)}
-                                >
-                                    Eliminar
-                                </button>
+                                <button className="btn btn-danger mt-3" onClick={() => removeFromCart(pizza.id)}>Eliminar</button>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
-            <div className="d-flex justify-content-between align-items-center mt-4">
-                <h3>Total: ${totalPrice.toLocaleString()}</h3>
-                <button className="btn btn-success btn-lg" disabled={!token}>Pagar</button>
-            </div>
+            <h4>Total: ${totalPrice.toLocaleString()}</h4>
+            {purchaseSuccess && <p className="text-success">Compra realizada con éxito!</p>}
+            <button className="btn btn-success mt-3" onClick={handleCheckout} disabled={!token}>
+                Pagar
+            </button>
         </div>
     );
 };
