@@ -1,62 +1,46 @@
 import React, { useState } from 'react';
+import { useUser } from '../context/UserContext';
 
 const Login = () => {
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-const [error, setError] = useState('');
-const [success, setSuccess] = useState('');
+    const { login } = useUser();
+    const [email, setEmail] = useState('test@example.com');
+    const [password, setPassword] = useState('123123');
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    setError('');
-    setSuccess('');
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        await login(email, password);
+    };
 
-    // validaciones
-    if (!email || !password) {
-    setError('Todos los campos son obligatorios.');
-    return;
-    }
-    
-    if (password.length < 6) {
-    setError('La contraseña debe tener al menos 6 caracteres.');
-    return;
-    }
-
-    setSuccess('¡Inicio de sesión exitoso!');
-};
-
-return (
-    <div className="container d-flex justify-content-center align-items-center vh-100">
-    <div className="card p-4 w-50">
-        <h2 className="text-center mb-4">Iniciar Sesión</h2>
-        <form onSubmit={handleSubmit}>
-        <div className="form-group mb-3">
-            <label>Email</label>
-            <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            />
+    return (
+        <div className="container mt-5">
+            <h2>Login</h2>
+            <form onSubmit={handleLogin}>
+                <div className="mb-3">
+                    <label className="form-label">Email</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="test@example.com"
+                        required
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="123123"
+                        required
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary">Login</button>
+            </form>
         </div>
-        <div className="form-group mb-3">
-            <label>Contraseña</label>
-            <input
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            />
-        </div>
-        <button type="submit" className="btn btn-primary w-100">Iniciar Sesión</button>
-        </form>
-        {error && <p className="text-danger mt-3">{error}</p>}
-        {success && <p className="text-success mt-3">{success}</p>}
-    </div>
-    </div>
-);
+    );
 };
 
 export default Login;
